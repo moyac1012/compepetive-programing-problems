@@ -62,31 +62,35 @@ template <typename T> inline bool chmin(T& a, const T& b) {bool compare = a > b;
 template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b; if (a < b) a = b; return compare;}
 
 
+
+double absp(pii a){
+    return sqrt(a.first*a.first+a.second*a.second);
+}
+
+double naiseki(pii a, pii b){
+    return a.first*b.first+a.second*b.second;
+}
+
 int main() {
     // code
-    ll n; cin >> n;
-    if(n == 1){
-        cout << 0 << endl;
-        return 0;
-    }
-    n--;
-    
-    for(int keta=1;;keta++){
-        ll num = 9;
-        ll l = (keta+1)/2;
-        rep(i,l-1) num *= 10;
-        if(num<n) {
-            n -= num;
-            continue;
-        }
+    vector<pii> T(3);
+    rep(i,3) cin >> T[i].first >> T[i].second;
+    pii vab = {T[1].first-T[0].first, T[1].second-T[0].second};
+    pii vbc = {T[2].first-T[1].first, T[2].second-T[1].second};
+    pii vca = {T[0].first-T[2].first, T[0].second-T[2].second};
 
-        n += num/9-1;
-        string s = to_string(n);
-        string rs = s;
-        reverse(rs.begin(), rs.end());
-        if(keta%2 == 1) s.pop_back();
-        cout << s+rs << endl;
+    if(naiseki(vab, vbc)/(absp(vab)*absp(vbc))==0){
+        cout << "Yes" << endl;
         return 0;
     }
+    if(naiseki(vab, vca)/(absp(vab)*absp(vca))==0){
+        cout << "Yes" << endl;
+        return 0;
+    }
+    if(naiseki(vca, vbc)/(absp(vca)*absp(vbc))==0){
+        cout << "Yes" << endl;
+        return 0;
+    }
+    cout << "No" << endl;
     return 0;
 }

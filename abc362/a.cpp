@@ -64,29 +64,17 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 
 int main() {
     // code
-    ll n; cin >> n;
-    if(n == 1){
-        cout << 0 << endl;
-        return 0;
+    int r,g,b; cin >> r >> g >> b;
+    string c; cin >> c;
+    char c0 = c[0];
+    int ans;
+    if(c0 == 'R'){
+        ans = min(g,b);
+    }else if(c0 == 'G'){
+        ans = min(r,b);
+    }else{
+        ans = min(g,r);
     }
-    n--;
-    
-    for(int keta=1;;keta++){
-        ll num = 9;
-        ll l = (keta+1)/2;
-        rep(i,l-1) num *= 10;
-        if(num<n) {
-            n -= num;
-            continue;
-        }
-
-        n += num/9-1;
-        string s = to_string(n);
-        string rs = s;
-        reverse(rs.begin(), rs.end());
-        if(keta%2 == 1) s.pop_back();
-        cout << s+rs << endl;
-        return 0;
-    }
+    cout << ans << endl;
     return 0;
 }
