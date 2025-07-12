@@ -64,16 +64,12 @@ template <typename T> inline bool chmax(T& a, const T& b) {bool compare = a < b;
 
 int main() {
     // code
-    int n;
-    string s;
-    cin >> n >> s;
-
-    ll cnt = 0;
-    rep(i,n-2){
-        if(s[i] == '#'){
-            if(s[i+1]=='.' && s[i+2]=='#') cnt++;
-        }
+    string s; 
+    cin >> s;
+    string ans = "";
+    rep(i, s.length()){
+        if(isupper(s[i])) ans += s[i];
     }
-    cout << cnt << endl;
+    cout << ans << endl;
     return 0;
 }
